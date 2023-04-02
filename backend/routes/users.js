@@ -7,29 +7,30 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: +' + err));
 });
 
-router.route('/:id').get((req, res) => {
-    User.findById(req.params.id)
+router.route('/:email').get((req, res) => {
+    var email = req.body.email;
+    User.findOne({email: email})
     .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: +' + err));
 });
 
 router.route('/add').post((req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     const fName = req.body.fName;
     const lName = req.body.lName;
 
-    const newUser = new User({username,password,fName,lName})
+    const newUser = new User({email,password,fName,lName})
 
     newUser.save()
     .then(() => res.json("USER ADDED"))
     .catch(err => res.status(400).json('Error: +' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
-    User.findById(req.params.id)
+router.route('/update/:email').post((req, res) => {
+    var email = req.body.email;
+    User.findOne({email: email})
     .then((user) => {
-        user.username = req.body.username;
         user.password = req.body.password;
         user.fName = req.body.fName;
         user.lName = req.body.lName;
@@ -41,8 +42,9 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' +err));
 });
 
-router.route('/:id').delete((req, res) => {
-    User.findByIdAndDelete(req.params.id)
+router.route('/:email').delete((req, res) => {
+    var email = req.body.email;
+    User.findOneAndDelete({email: email})
     .then(() => res.json("USER DELETED!"))
     .catch(err => res.status(400).json('Error: +' + err));
 });
