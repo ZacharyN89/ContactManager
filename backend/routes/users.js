@@ -27,10 +27,10 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
-    User.findById(req.params.id)
+router.route('/update/:email').post((req, res) => {
+    var email = req.body.email;
+    User.findOne({email: email})
     .then((user) => {
-        user.username = req.body.username;
         user.password = req.body.password;
         user.fName = req.body.fName;
         user.lName = req.body.lName;
@@ -42,8 +42,9 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' +err));
 });
 
-router.route('/:id').delete((req, res) => {
-    User.findByIdAndDelete(req.params.id)
+router.route('/:email').delete((req, res) => {
+    var email = req.body.email;
+    User.findOneAndDelete({email: email})
     .then(() => res.json("USER DELETED!"))
     .catch(err => res.status(400).json('Error: +' + err));
 });
