@@ -19,8 +19,9 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const fName = req.body.fName;
     const lName = req.body.lName;
+    const verified = req.body.verified;
 
-    const newUser = new User({email,password,fName,lName})
+    const newUser = new User({email,password,fName,lName, verified})
 
     newUser.save()
     .then(() => res.json("USER ADDED"))
@@ -34,7 +35,7 @@ router.route('/update/:email').post((req, res) => {
         user.password = req.body.password;
         user.fName = req.body.fName;
         user.lName = req.body.lName;
-    
+
         user.save()
             .then(() => res.json("USER UPDATED!"))
             .catch(err => res.status(400).json('Error: +' + err));
