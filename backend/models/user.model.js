@@ -23,13 +23,13 @@ const userSchema = new Schema({
 		trim: true,
 		minlength: 5
 	},
-	fname: {
+	fName: {
 		type: String,
 		required: true,
 		trim: true,
 		minlength: 1
 	},
-	lname: {
+	lName: {
 		type: String,
 		required: true,
 		trim: true,
