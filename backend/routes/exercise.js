@@ -10,12 +10,13 @@ router.route('/').get((req, res) =>
 
 router.route('/add').post((req, res) =>
 {
+	const email = req.body.email;
 	const title = req.body.title;
 	const sets = req.body.sets;
 	const reps = req.body.reps;
 	const day = req.body.day;
 
-	const newExercise = new Exercise({ title, sets, reps, day })
+	const newExercise = new Exercise({ email, title, sets, reps, day })
 
 	newExercise.save()
 		.then(() => res.json("EXERCISE ADDED"))

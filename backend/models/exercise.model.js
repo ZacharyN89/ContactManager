@@ -2,7 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const exerciseSchema = new Schema({
-	title: {
+	email: {
+		type: String,
+		required: true,
+		trim: true,
+		minlength: 1
+	},
+  title: {
 		type: String,
 		required: true,
 		trim: true,
