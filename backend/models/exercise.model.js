@@ -20,6 +20,10 @@ const exerciseSchema = new Schema({
 		type: String,
 		required: true,
 	},
+  email: {
+    type: String,
+    required: true,
+  }
 });
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 module.exports = Exercise;

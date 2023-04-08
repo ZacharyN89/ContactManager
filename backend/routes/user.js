@@ -19,9 +19,8 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const fName = req.body.fName;
     const lName = req.body.lName;
-    const verified = req.body.verified;
 
-    const newUser = new User({email,password,fName,lName, verified})
+    const newUser = new User({email,password,fName,lName})
 
     newUser.save()
     .then(() => res.json("USER ADDED"))
@@ -43,11 +42,12 @@ router.route('/update/:email').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' +err));
 });
 
-router.route('/:email').delete((req, res) => {
+router.route('/delete/:email').delete((req, res) => {
     var email = req.body.email;
     User.findOneAndDelete({email: email})
     .then(() => res.json("USER DELETED!"))
     .catch(err => res.status(400).json('Error: +' + err));
+    //should be updated to delete all exercises associated with user as well
 });
 
 module.exports = router;
