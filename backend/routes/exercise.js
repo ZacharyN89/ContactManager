@@ -40,6 +40,20 @@ router.route('/delete/:email').delete((req, res) =>
 		.catch(err => res.status(400).json('Error: +' + err));
 });
 
+router.route('/update/:email').post((req, res) =>
+{
+	var email = req.body.email;
+	var title = req.body.title;
+	Exercise.findOne({ email: email, title: title })
+		.then((exercise) => {
+			exercise.sets = req.body.sets;
+			exercise.reps = req.body.reps;
+			exercise.day = req.body.day;
 
+			exercise.save()
+				.then(() => res.json("EXERCISE UPDATED!"))
+				.catch(err => res.status(400).json('Error: +' + err));
+		})
+});
 
 module.exports = router;

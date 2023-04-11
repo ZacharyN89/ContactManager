@@ -47,7 +47,7 @@ router.route('/delete/:email').delete((req, res) => {
     User.findOneAndDelete({email: email})
     .then(() => res.json("USER DELETED!"))
     .catch(err => res.status(400).json('Error: +' + err));
-    //should be updated to delete all exercises associated with user as well
+    //should be updated to delete all exercises associated with user as well. probably easier to manage taht in front end though
 });
 
 module.exports = router;
