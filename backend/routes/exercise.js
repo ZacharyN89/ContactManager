@@ -8,6 +8,14 @@ router.route('/').get((req, res) =>
 		.catch(err => res.status(400).json('Error: +' + err));
 });
 
+router.route('/:email').get((req, res) =>
+{
+	var email = req.body.email;
+	Exercise.find({ email: email })
+		.then(exercises => res.json(exercises))
+		.catch(err => res.status(400).json('Error: +' + err));
+ });
+   
 router.route('/:id').get((req, res) => {
     Exercise.findById(req.params.id)
     .then(exercise => res.json(exercise))
@@ -21,6 +29,7 @@ router.route('/add').post((req, res) =>
 	const sets = req.body.sets;
 	const reps = req.body.reps;
 	const day = req.body.day;
+	const email = req.body.email;
 
 	const newExercise = new Exercise({ email, title, sets, reps, day })
 
@@ -45,11 +54,10 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' +err));
 });
 
-router.route('/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     Exercise.findByIdAndDelete(req.params.id)
     .then(() => res.json("EXERCISE DELETED!"))
     .catch(err => res.status(400).json('Error: +' + err));
 });
-
 
 module.exports = router;
