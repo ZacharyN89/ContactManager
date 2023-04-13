@@ -14,46 +14,50 @@ router.route('/:email').get((req, res) =>
 	Exercise.find({ email: email })
 		.then(exercises => res.json(exercises))
 		.catch(err => res.status(400).json('Error: +' + err));
+ });
+   
+router.route('/:id').get((req, res) => {
+    Exercise.findById(req.params.id)
+    .then(exercise => res.json(exercise))
+    .catch(err => res.status(400).json('Error: +' + err));
 });
 
 router.route('/add').post((req, res) =>
 {
+	const email = req.body.email;
 	const title = req.body.title;
 	const sets = req.body.sets;
 	const reps = req.body.reps;
 	const day = req.body.day;
 	const email = req.body.email;
 
-	const newExercise = new Exercise({ title, sets, reps, day, email })
+	const newExercise = new Exercise({ email, title, sets, reps, day })
 
 	newExercise.save()
 		.then(() => res.json("EXERCISE ADDED"))
 		.catch(err => res.status(400).json('Error: +' + err));
 });
 
-router.route('/delete/:email').delete((req, res) =>
-{
-	var email = req.body.email;
-	var title = req.body.title;
-	Exercise.findOneAndDelete({ email: email, title: title })
-		.then(() => res.json("EXERCISE DELETED!"))
-		.catch(err => res.status(400).json('Error: +' + err));
+router.route('/update/:id').post((req, res) => {
+    Exercise.findById(req.params.id)
+    .then((exercise) => {
+
+		exercise.title = req.body.title;
+		exercise.sets = req.body.sets;
+		exercise.reps = req.body.reps;
+		exercise.day = req.body.day;
+
+        exercise.save()
+            .then(() => res.json("EXERCISE UPDATED!"))
+            .catch(err => res.status(400).json('Error: +' + err));
+    })
+    .catch(err => res.status(400).json('Error: +' +err));
 });
 
-router.route('/update/:email').post((req, res) =>
-{
-	var email = req.body.email;
-	var title = req.body.title;
-	Exercise.findOne({ email: email, title: title })
-		.then((exercise) => {
-			exercise.sets = req.body.sets;
-			exercise.reps = req.body.reps;
-			exercise.day = req.body.day;
-
-			exercise.save()
-				.then(() => res.json("EXERCISE UPDATED!"))
-				.catch(err => res.status(400).json('Error: +' + err));
-		})
+router.route('/delete/:id').delete((req, res) => {
+    Exercise.findByIdAndDelete(req.params.id)
+    .then(() => res.json("EXERCISE DELETED!"))
+    .catch(err => res.status(400).json('Error: +' + err));
 });
 
 module.exports = router;
