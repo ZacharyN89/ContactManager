@@ -8,7 +8,7 @@ const exerciseSchema = new Schema({
 		trim: true,
 		minlength: 1
 	},
-  title: {
+ 	title: {
 		type: String,
 		required: true,
 		trim: true,
@@ -25,11 +25,7 @@ const exerciseSchema = new Schema({
 	day: {
 		type: String,
 		required: true,
-	},
-  email: {
-    type: String,
-    required: true,
-  }
+	}
 });
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 module.exports = Exercise;
