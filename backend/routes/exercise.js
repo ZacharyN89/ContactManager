@@ -10,8 +10,8 @@ router.route('/').get((req, res) =>
 
 router.route('/:email').get((req, res) =>
 {
-	var email = req.body.email;
-	Exercise.find({ email: email })
+	var res_email = req.body.email;
+	Exercise.find({ email: res_email })
 		.then(exercises => res.json(exercises))
 		.catch(err => res.status(400).json('Error: +' + err));
  });
@@ -29,7 +29,6 @@ router.route('/add').post((req, res) =>
 	const sets = req.body.sets;
 	const reps = req.body.reps;
 	const day = req.body.day;
-	const email = req.body.email;
 
 	const newExercise = new Exercise({ email, title, sets, reps, day })
 
