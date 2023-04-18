@@ -27,8 +27,8 @@ connection.once('open', () =>{
 })
 
 // Call the file for userRouter
-const userRouter = require('./routes/UserAuth');
-const exerciseRouter = require('./routes/Exercise');
+const userRouter = require('./routes/user');
+const exerciseRouter = require('./routes/exercise');
 // Include the /users as the url to access the function
 app.use('/users', userRouter);
 app.use('/exercise', exerciseRouter);
