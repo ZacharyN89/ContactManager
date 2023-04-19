@@ -1,18 +1,21 @@
-import React from "react";
-import './App.css';
-import FrontPage from "./components/frontPage.component";
-import OtherPage from "./components/otherPage.component";
 
-// Importing react router dom for routing
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
+import FrontPage from './components/FrontPageLogin.component';
+import WorkoutManager from './components/WorkoutManager.component';
+
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
+  let token = localStorage.getItem("user");
+  if (!token)
+  {
+    return <FrontPage/>
+  }
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path = "/" element = {<FrontPage />}></Route>
-          <Route path = "/otherpage" element = {<OtherPage />}></Route>
+          <Route path="/" element = {<WorkoutManager/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
