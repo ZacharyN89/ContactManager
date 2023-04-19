@@ -55,8 +55,40 @@ async function createUser(e){
 
 }
 
+function  loginToggle(e){
+    let login = document.getElementById("LoginUser");
+    let FrontPage = document.getElementById("FrontPage");
 
+    //If the change user type screen was hidden before, unhide it
+    if(FrontPage.getAttribute("hidden") !== null){
+        FrontPage.removeAttribute("hidden"); 
+        login.setAttribute("hidden", true);
+    }
+    //otherwise, hide everything and show the general page
+    else{
+        login.removeAttribute("hidden"); 
+        FrontPage.setAttribute("hidden", true);
+    }
+}
+function  registerToggle(e){
+    let register = document.getElementById("CreateUser");
+    let FrontPage = document.getElementById("FrontPage");
 
+    //If the change user type screen was hidden before, unhide it
+    if(FrontPage.getAttribute("hidden") !== null){
+        FrontPage.removeAttribute("hidden"); 
+        register.setAttribute("hidden", true);
+    }
+    //otherwise, hide everything and show the general page
+    else{
+        register.removeAttribute("hidden"); 
+        FrontPage.setAttribute("hidden", true);
+    }
+}
+
+function toggleLogintest(){
+    console.log(document.getElementById("Login").className)
+}
 
 
 function getUserData(){
@@ -123,13 +155,21 @@ Login = async(e)=>{
 
 render(){
     return(
-        <div style = {{backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
-            <div className='FrontPage'>
-                <h3>Welcome to the MountainTop Workout Planner</h3>
-                <img src={require('../images/icon.png')} alt="logo" />
-            </div>
+        <div style = {{textAlign: "center", backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover",  boxSizing: "border-box", height:"100vh",paddingBottom:"50%", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+            <div className='FrontPage' id="FrontPage">
+                <h2 className='welcomeTitle'>Welcome to the MountainTop Workout Planner</h2>    
+                <div className='box'>
+                    <img src={require('../images/icon2.png')} alt="logo2"  className='logo2'/>
+                    <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
+
+                </div>
             
-            <div id = "Create User" className = "Register"onSubmit={createUser}>
+            </div>
+            <br/>
+            <Button type = "button" className ="button" id="addUser"onClick={loginToggle}>Login</Button>
+            <Button type = "button" className ="button" id="addUser"onClick={toggleLogintest}>LoginTEST</Button>
+            <Button type = "button" className ="button" id="addUser"onClick={registerToggle}>Register</Button>
+            <div id = "CreateUser" className = "Register" onSubmit={createUser} hidden>
                 <h3>Register</h3>
                 <form>
                     <label>First Name</label>
@@ -157,7 +197,7 @@ render(){
 
 
             </div>
-            <div id = "Login User" className = "Login" onSubmit={this.Login}>
+            <div id = "LoginUser" className = "Login" onSubmit={this.Login} hidden>
                 <h3>Login</h3>
 
                 <form>

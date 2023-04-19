@@ -185,7 +185,7 @@ render(){
             <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button>
             <div id = "Add Exercise">
                 <h3>Add an Exercise</h3>
-                <form onSubmit ={this.createExercise}>
+                <form onSubmit ={createExercise}>
                     <label>Title</label>
                     <div>
                        <Form.Control id = "ExTitle" required  className = "input" placeholder ="Enter your exercise name."></Form.Control> 
@@ -201,7 +201,7 @@ render(){
                     
                     <label>Day</label>
                     <div className  = "custom-select">
-                        <select id= "day"  >
+                        <select class="form-select" aria-label="Days" id="day">
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
