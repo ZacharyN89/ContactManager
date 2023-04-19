@@ -65,11 +65,56 @@ constructor(props){
         sunday: [],
         monday: [],
         tuesday: [],
-        wendesday: [],
+        wednesday: [],
         thursday: [],
         friday: [],
         saturday: [],
     }
+}
+
+createExercise = async(e)=>{
+    e.preventDefault();
+    let err = document.getElementById("errorAddEx")
+    let userIn = localStorage.getItem("user");
+    let title = (document.getElementById("ExTitle").value);
+    let sets = Number(document.getElementById("sets").value)
+    let reps = Number(document.getElementById("reps").value)
+    let day = (document.getElementById("day").value)
+
+
+    //email filtering
+    /*if(!email.match("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;"))
+    {
+        err.innerHTML = "Please enter a valid email address.";
+        return;
+    }*/
+
+
+    //password filtering
+     if(sets === 0 || reps === 0)
+    {
+        err.innerHTML = "Please enter a valid exercise routine.";
+        return;
+    }
+
+    let exercise = {
+        email: userIn,
+        title: title,
+        sets:  sets,
+        reps:  reps,
+        day:   day
+    }
+    console.log(exercise)
+    err.innerHTML = "";
+
+    await addExercise(exercise);
+    console.log("IT ACTUALLY WORKS")
+    await this.fetchDay();
+    console.log("IT ACTUALLY WORKS HERE")
+    return;
+
+
+
 }
 
 fetchDay = async(e)=>{
@@ -89,7 +134,7 @@ fetchDay = async(e)=>{
     }
     let exercise4 = {
         email: userIn,
-        day:   "Wendesday"
+        day:   "Wednesday"
     }
     let exercise5 = {
         email: userIn,
@@ -112,20 +157,17 @@ fetchDay = async(e)=>{
     let dataFri = await findExerciseDay(exercise6);
     let dataSat = await findExerciseDay(exercise7);
     
-    console.log(dataTues);
     this.setState({
         sunday : dataSun,
         monday : dataMon,
         tuesday : dataTues,
-        wendesday : dataWends,
+        wednesday : dataWends,
         thursday : dataThurs,
         friday : dataFri,
         saturday : dataSat,
 
     })
 
-    console.log("STATE:")
-    console.log(this.state.tuesday)
 
 
 }
@@ -137,13 +179,13 @@ render(){
     const {sunday, monday, tuesday, wednesday, thursday, friday, saturday} = this.state;
 
     return(
-        <div>
+        <div style = {{backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
             <h3>This is MountainTop Workout Planner LOGGED IN PAGE</h3>
             <h3>Welcome {localStorage.getItem("fName")} {localStorage.getItem("lName")}</h3>
             <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button>
             <div id = "Add Exercise">
                 <h3>Add an Exercise</h3>
-                <form onSubmit ={createExercise}>
+                <form onSubmit ={this.createExercise}>
                     <label>Title</label>
                     <div>
                        <Form.Control id = "ExTitle" required  className = "input" placeholder ="Enter your exercise name."></Form.Control> 
@@ -158,12 +200,12 @@ render(){
                     </div>
                     
                     <label>Day</label>
-                    <div>
-                        <select id= "day">
+                    <div className  = "custom-select">
+                        <select id= "day"  >
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
-                            <option value="Wendesday">Wendesday</option>
+                            <option value="Wednesday">Wednesday</option>
                             <option value="Thursday">Thursday</option>
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
@@ -177,9 +219,37 @@ render(){
 
 
             </div>
-            <div id ="Tuesday">
-            <h1>Tuesday</h1>
-            {tuesday.map(tuesday => <Card title = {tuesday.title} sets = {tuesday.sets} day =  {tuesday.day} reps = {tuesday.reps} id={tuesday._id} key ={tuesday._id}/>)}
+
+            
+            <div className  = "displayDays-container">
+                <div id ="Sunday" className  = "displayDays">
+                    <h2>Sunday</h2>
+                    {sunday.map(sunday => <Card fetchDay = {this.fetchDay} title = {sunday.title} sets = {sunday.sets} day =  {sunday.day} reps = {sunday.reps} id={sunday._id} key ={sunday._id}/>)}
+                </div>
+                <div id ="Monday" className  = "displayDays">
+                    <h2>Monday</h2>
+                    {monday.map(monday => <Card fetchDay = {this.fetchDay} title = {monday.title} sets = {monday.sets} day =  {monday.day} reps = {monday.reps} id={monday._id} key ={monday._id}/>)}
+                </div>
+                <div id ="Tuesday" className  = "displayDays">
+                    <h2>Tuesday</h2>
+                    {tuesday.map(tuesday => <Card fetchDay = {this.fetchDay} title = {tuesday.title} sets = {tuesday.sets} day =  {tuesday.day} reps = {tuesday.reps} id={tuesday._id} key ={tuesday._id}/>)}
+                </div>
+                <div id ="Wendesday" className  = "displayDays">
+                    <h2>Wednesday</h2>
+                    {wednesday.map(wednesday => <Card fetchDay = {this.fetchDay} title = {wednesday.title} sets = {wednesday.sets} day =  {wednesday.day} reps = {wednesday.reps} id={wednesday._id} key ={wednesday._id}/>)}
+                </div>
+                <div id ="Thursday" className  = "displayDays">
+                    <h2>Thursday</h2>
+                    {thursday.map(thursday => <Card fetchDay = {this.fetchDay} title = {thursday.title} sets = {thursday.sets} day =  {thursday.day} reps = {thursday.reps} id={thursday._id} key ={thursday._id}/>)}
+                </div>
+                <div id ="Friday" className  = "displayDays">
+                    <h2>Friday</h2>
+                    {friday.map(friday => <Card fetchDay = {this.fetchDay} title = {friday.title} sets = {friday.sets} day =  {friday.day} reps = {friday.reps} id={friday._id} key ={friday._id}/>)}
+                </div>
+                <div id ="Saturday" className  = "displayDays">
+                    <h2>Saturday</h2>
+                    {saturday.map(saturday => <Card fetchDay = {this.fetchDay} title = {saturday.title} sets = {saturday.sets} day =  {saturday.day} reps = {saturday.reps} id={saturday._id} key ={saturday._id}/>)}
+                </div>
             </div>
 
         </div>

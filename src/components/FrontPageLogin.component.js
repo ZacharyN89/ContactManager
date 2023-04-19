@@ -123,9 +123,13 @@ Login = async(e)=>{
 
 render(){
     return(
-        <div>
-            <h3>This is MountainTop Workout Planner FRONTPAGE</h3>
-            <div id = "Create User"onSubmit={createUser}>
+        <div style = {{backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+            <div className='FrontPage'>
+                <h3>Welcome to the MountainTop Workout Planner</h3>
+                <img src={require('../images/icon.png')} alt="logo" />
+            </div>
+            
+            <div id = "Create User" className = "Register"onSubmit={createUser}>
                 <h3>Register</h3>
                 <form>
                     <label>First Name</label>
@@ -153,7 +157,7 @@ render(){
 
 
             </div>
-            <div id = "Login User"onSubmit={this.Login}>
+            <div id = "Login User" className = "Login" onSubmit={this.Login}>
                 <h3>Login</h3>
 
                 <form>
@@ -166,12 +170,11 @@ render(){
                     <div>
                         <Form.Control id = "passwordL" required className = "input" placeholder ="Enter your password"></Form.Control>
                     </div>
-                    <Button type = "Submit" id="login">Login</Button>
+                    <label id = "errorLogin"></label><br/>
+                    <Button type = "Submit" className = "button" id="login">Login</Button>
 
                 </form>
-                <p id = "errorLogin"></p>
-                <Button type = "button" className ="button"id="getLoggedinData" onClick={getUserData}>Testgetuserdata</Button>
-                <Button type = "button" className ="button" id="logout"onClick={logout}>Testlogout</Button>
+                
 
             </div>
         </div>

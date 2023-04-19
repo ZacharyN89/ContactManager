@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import { editExercise , deleteExercise} from '../features/WorkoutManager';
 
 class Card extends Component {
     constructor(props){
@@ -12,6 +13,10 @@ class Card extends Component {
             day: props.day,
             id: props.id
         }
+    }
+
+    updateDays = () => {
+        this.props.fetchDay();
     }
 
     editMode = (e)=>{
@@ -32,7 +37,6 @@ class Card extends Component {
     }
 
     deleteMode = (e)=>{
-        console.log(this.state.reps);
         let displayScreen = document.getElementById("cardContainerDisplay" +this.state.id);
         let delScreen = document.getElementById("cardDelMode" +this.state.id);
     
@@ -48,22 +52,68 @@ class Card extends Component {
         }
     }
 
-    render() {
+    editExercise = async(e)=>{
+        let title = (document.getElementById("titleE"+this.state.id).value);
+    
+        let sets = (document.getElementById("setsE"+this.state.id).value);
+        
+        let reps = (document.getElementById("repsE"+this.state.id).value);
+        let day = (document.getElementById("dayE"+this.state.id).value);
+        let id = this.state.id;
+
+        let exercise = {
+            title: title,
+            sets:  sets,
+            reps:  reps,
+            day:   day,
+            id:    id
+        }
+        await editExercise(exercise);
+        this.editMode();
+        this.updateDays();
+        //window.location.reload(false);
+
+        }
+
+        deleteExercise = async(e)=>{
+            let title = (document.getElementById("titleE"+this.state.id).value);
+        
+            let sets = (document.getElementById("setsE"+this.state.id).value);
+            
+            let reps = (document.getElementById("repsE"+this.state.id).value);
+            let day = (document.getElementById("dayE"+this.state.id).value);
+            let id = this.state.id;
+    
+            let exercise = {
+                title: title,
+                sets:  sets,
+                reps:  reps,
+                day:   day,
+                id:    id
+            }
+            await deleteExercise(exercise);
+            this.deleteMode();
+            this.updateDays();
+            //window.location.reload(false);
+    
+            }
+    
+
+    render(){
         return(
             <div>
                 <div className = "cardContainerDisplay" id = {"cardContainerDisplay"+this.state.id}>
                     <div className = "cardContent">
                     
                     </div>
-                    <div className = "cardTitle">
-                        <h2>{this.props.title}</h2>
+                    <div>
+                        <h3>{this.props.title}</h3>
                     </div>
-                    <div className = "cardSets">
-                        <p>{this.props.sets}</p>
-                    </div>
-                    <div className = "cardReps">
-                        <p>{this.props.reps}</p>
-                    </div>
+                    
+                    <label>Sets: {this.props.sets}</label><br/>
+                    
+                    <label>Reps: {this.props.reps}</label><br/>
+                    
                     <form>
                         <Button type = "button" className ="button" id={"editCard"+this.state.id} onClick ={this.editMode}>Edit</Button>
                         <Button type = "button" className ="button" id={"deleteCard"+this.state.id} onClick = {this.deleteMode}>Delete</Button>                        
@@ -72,21 +122,29 @@ class Card extends Component {
                 </div>
                 <div className = "cardEditMode" id = {"cardEditMode"+this.state.id} hidden>
                     <form>
+
+                        <Form.Control id = {"titleE"+this.state.id} required  className = "inputC" placeholder ="Edit your title" defaultValue= {this.state.title}></Form.Control> <br/>  
+
+
+                        <Form.Control id = {"setsE"+this.state.id} required type="number"  min="0" className = "inputC" placeholder ="Enter your new number of sets" defaultValue = {this.state.sets}></Form.Control>  <br/>  
+
                         
-                        <Form.Control id = {"titleE"+this.state.id} required  className = "input" placeholder ="Edit your title" defaultValue= {this.state.title}></Form.Control>
-                        <Form.Control id = {"setsE"+this.state.id} required type="number"  min="0" className = "input" placeholder ="Enter your new number of sets" defaultValue = {this.state.sets}></Form.Control>
-                        <Form.Control id = {"repsE"+this.state.id} required type="number"  min="0" className = "input" placeholder ="Enter your new number of sets" defaultValue = {this.state.reps}></Form.Control>
+                        <Form.Control id = {"repsE"+this.state.id} required type="number"  min="0" className = "inputC" placeholder ="Enter your new number of sets" defaultValue = {this.state.reps}></Form.Control> <br/>   
+                        
+
                         <select id= {"dayE"+this.state.id} defaultValue = {this.state.day}>
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
-                            <option value="Wendesday">Wendesday</option>
+                            <option value="Wednesday">Wednesday</option>
                             <option value="Thursday">Thursday</option>
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
-                        </select>
+                        </select><br/>
 
-                            <Button type = "button" className ="button" id="editCard" >Save</Button>
+
+
+                            <Button type = "button" className ="button" id="editCard" onClick ={this.editExercise} >Save</Button>
                             <Button type = "button" className ="button" id="editCard" onClick ={this.editMode}>Go Back</Button>
                     </form>
                 
@@ -97,17 +155,17 @@ class Card extends Component {
                     <div className = "cardContent">
                     </div>
                     <div className = "cardTitle">
-                        <h2>{this.props.title}</h2>
+                        <h3>{this.props.title}</h3>
                     </div>
                     <div className = "cardSets">
-                        <p>{this.props.sets}</p>
+                        <label>Sets: {this.props.sets}</label>
                     </div>
                     <div className = "cardReps">
-                        <p>{this.props.reps}</p>
+                        <label>Reps: {this.props.reps}</label>
                     </div>
                     <p>Are you sure you want to delete this exercise?</p>
                     <Button type = "button" className ="button" id={"deleteCard"+this.state.id} onClick ={this.deleteMode}>Go Back</Button>
-                    <Button type = "button" className ="button" id="deleteCard">Delete</Button>
+                    <Button type = "button" className ="button" id="deleteCard" onClick ={this.deleteExercise}>Delete</Button>
                 </div>
 
             </div>
