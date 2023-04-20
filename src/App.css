@@ -6,6 +6,9 @@
 
 
 .button {
+  margin-left: 1%;
+  margin-bottom: 2%;
+  font-size: small;
 }
 
 .button:hover {
@@ -16,14 +19,15 @@
 
 }
 
-
 .displayDays-container{
-  display: flex;
-  justify-content: center;
+  display:inline-table;
+  justify-content:space-around;
+  
   
 }
 .displayDays{
-  float:left;
+  display: inline-table;
+  
 }
 .icon {
   background-image: url(./images/icon.png);
@@ -31,8 +35,8 @@
 .input {
   padding:10px;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
   border-radius: 25px;
   border-style: outset;
   border: 2px solid #333;
@@ -67,6 +71,7 @@ h2 {
   text-align: center;
   font-size: 2.5rem;
   font-stretch:wider;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 h3 {
   color: #F8F0E3;
@@ -80,6 +85,7 @@ label {
   font-size: 1.25rem;
   font-stretch:wider;
 }
+
 p {
   color: #F8F0E3;
   text-align: center;
@@ -89,65 +95,108 @@ p {
 
 .Register, .Login{
   text-align: center;
-
-  background: linear-gradient(45deg,
-  #380200,
-  #ba0c0c );
-  width:20%;
+  background: radial-gradient(
+  transparent,
+  #270F36 );
+  width:25%;
   margin-left: auto;
   margin-right: auto;
-
-  border: 5px solid #3a2b2b;
+  border: 2px solid #3a2b2b;
   border-style: outset;
-  border-radius: 50px;
-
-  margin-bottom: 10px;
+  border-radius: 25px;
+  margin-bottom: 20px;
 }
-
-
-
-.cardContainerDisplay, .cardEditMode,.cardDelMode{
-  background: linear-gradient(45deg,
-  #380200,
-  #ba0c0c );
-  width: 135px;
-  border: 5px solid #3a2b2b;
+.Register2{
+  text-align: center;
+  background: radial-gradient(
+    transparent,
+    #270F36 );
+  width:35%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #3a2b2b;
   border-style: outset;
-  border-radius: 50px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+.cardContainerDisplay{
+  background: radial-gradient(
+    transparent ,
+    #270F36  );
+  width: 135px;
+  border: .5px solid #3a2b2b;
+  border-style: outset;
+  border-radius: 15px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 20px;
   position: relative; 
   margin-left:20px;
   margin-bottom:20px;
+  animation: cardIn 0.5s;
+
+}
+.cardEditMode,.cardDelMode{
+  background: radial-gradient(
+    transparent,#642B6B,
+    #270F36 );
+  width: 135px;
+  border: 2px solid #3a2b2b;
+  border-style: outset;
+  border-radius: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  position: relative; 
+  margin-left:20px;
+  margin-bottom:20px;
+ 
 }
 
 .button{
-  background-color: #82007D;
-  border-radius: 25px;
+  background: linear-gradient(45deg,
+  #270F36,
+  #642B6B );
+  border-radius: 15px;
   color:#fff;
-  font-family:  MV Boli;
-  font-size:     1.25em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5em;
   padding: 10px 25px;
+  margin-top: 5%;
 }
 
 .button:hover{
-  background-color: #380036;
-  border-radius: 25px;
+  background: linear-gradient(45deg,
+  #642B6B,
+  #270F36 );
+  border-radius: 15px;
   color:#fff;
 }
 .FrontPage{
   display:inline-block;
   text-align: center;
 }
+.box2{
+  background: radial-gradient(
+  transparent,
+  #270F36 80%);
+  text-align: center;
+  display:block;
+  height: 30%;
+  width: 70%;
+  float:center;
+  border: 1px solid #3a2b2b;
+  border-style: outset;
+  border-radius: 15px;
 
+}
 .box{
   text-align: center;
   display:block;
-  height: 270px;
+  height: 250px;
   float:center;
   position: relative;
-  margin: 0 19px;
+  
 }
 .logo1{
 
@@ -166,7 +215,7 @@ p {
   animation: taadaa 2s; 
 }
 .welcomeTitle{
-  margin-top: 15%;
+  margin-top: 10%;
   animation: taadaa 2s; 
 }
 
@@ -203,4 +252,32 @@ p {
     display: none;
     opacity: 0;
   }
+}
+
+@keyframes cardIn {
+
+  0%{
+    display:block;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+    100%{
+    display: none;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+select{
+  padding:10px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 25px;
+  border-style: outset;
+  border: 2px solid #333;
+  background:#380036;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #F8F0E3;
+  font-size: 15px;
 }

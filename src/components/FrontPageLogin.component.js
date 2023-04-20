@@ -155,28 +155,26 @@ Login = async(e)=>{
 
 render(){
     return(
-        <div style = {{textAlign: "center", backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover",  boxSizing: "border-box", height:"100vh",paddingBottom:"50%", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+        <div style = {{textAlign: "center", backgroundImage:`url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)`, backgroundSize: "cover",  boxSizing: "border-box", height:"100vh",paddingBottom:"99%", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
             <div className='FrontPage' id="FrontPage">
-                <h2 className='welcomeTitle'>Welcome to the MountainTop Workout Planner</h2>    
+                <h2 className='welcomeTitle'>Welcome to</h2>    
                 <div className='box'>
-                    <img src={require('../images/icon2.png')} alt="logo2"  className='logo2'/>
+                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2'/>
                     <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
-
                 </div>
-            
+                <h2 className='welcomeTitle'><strong>The MountainTop Workout Planner</strong></h2>
             </div>
             <br/>
-            <Button type = "button" className ="button" id="addUser"onClick={loginToggle}>Login</Button>
-            <Button type = "button" className ="button" id="addUser"onClick={toggleLogintest}>LoginTEST</Button>
-            <Button type = "button" className ="button" id="addUser"onClick={registerToggle}>Register</Button>
+            <Button type = "button" className ="button" id="addUser"onClick={loginToggle}><strong>Log in</strong></Button>
+            <Button type = "button" className ="button" id="addUser"onClick={registerToggle}><strong>Register</strong></Button>
             <div id = "CreateUser" className = "Register" onSubmit={createUser} hidden>
-                <h3>Register</h3>
+                <h2><strong>Register</strong></h2>
                 <form>
                     <label>First Name</label>
                     <div>
                        <Form.Control id = "firstName" required className = "input" placeholder ="Enter your first name"></Form.Control> 
                     </div>
-                    <label>Last Name</label>
+                    <label>Last Name</label> 
                     <div>
                         <Form.Control id = "lastName" required className = "input" placeholder ="Enter your last name"></Form.Control>
                     </div>
@@ -198,7 +196,7 @@ render(){
 
             </div>
             <div id = "LoginUser" className = "Login" onSubmit={this.Login} hidden>
-                <h3>Login</h3>
+                <h2>Log in</h2>
 
                 <form>
                 <label>Email</label>
@@ -211,7 +209,7 @@ render(){
                         <Form.Control id = "passwordL" required className = "input" placeholder ="Enter your password"></Form.Control>
                     </div>
                     <label id = "errorLogin"></label><br/>
-                    <Button type = "Submit" className = "button" id="login">Login</Button>
+                    <Button type = "Submit" className = "button" id="login"><strong>Log in</strong></Button>
 
                 </form>
                 

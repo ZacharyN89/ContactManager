@@ -179,27 +179,33 @@ render(){
     const {sunday, monday, tuesday, wednesday, thursday, friday, saturday} = this.state;
 
     return(
-        <div style = {{backgroundImage:`url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mountain_Sunset_%2833696907845%29.jpg/2560px-Mountain_Sunset_%2833696907845%29.jpg)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
-            <h3>This is MountainTop Workout Planner LOGGED IN PAGE</h3>
+       
+        <div style = {{backgroundImage:`url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+           <div className='box'>
+                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2'/>
+                    <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
+                </div>
+                <center><div className='box2'>
+           <box2><h2>This is MountainTop Workout Planner</h2></box2></div></center>
             <h3>Welcome {localStorage.getItem("fName")} {localStorage.getItem("lName")}</h3>
             <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button>
-            <div id = "Add Exercise">
+            <div id = "Add Exercise" className='Register2'>
                 <h3>Add an Exercise</h3>
                 <form onSubmit ={createExercise}>
-                    <label>Title</label>
+                    <h3>Title</h3>
                     <div>
                        <Form.Control id = "ExTitle" required  className = "input" placeholder ="Enter your exercise name."></Form.Control> 
                     </div>
-                    <label>Sets</label>
+                    <h3>Sets</h3>
                     <div>
                         <Form.Control id = "sets" required type="number"  min="0" className = "input" placeholder ="Enter your number of sets"></Form.Control>
                     </div>
-                    <label>Reps</label>
+                    <h3>Reps</h3>
                     <div>
                         <Form.Control id = "reps" required type="number"  min="0" className = "input" placeholder ="Enter your number of sets"></Form.Control>
                     </div>
                     
-                    <label>Day</label>
+                    <h3>Day</h3>
                     <div className  = "custom-select">
                         <select class="form-select" aria-label="Days" id="day">
                             <option value="Sunday">Sunday</option>
@@ -211,7 +217,7 @@ render(){
                             <option value="Saturday">Saturday</option>
                         </select>
                     </div>
-                    <Button type = "Submit" className ="button" id="addUser">Add an Exercise</Button>
+                    <Button type = "Submit" className ="button" style={{height: '100px', width : '200px'}} id="addUser">Add an Exercise</Button>
 
 
                 </form>
@@ -221,7 +227,7 @@ render(){
             </div>
 
             
-            <div className  = "displayDays-container">
+            <div className  = "displayDays-container"></div>
                 <div id ="Sunday" className  = "displayDays">
                     <h2>Sunday</h2>
                     {sunday.map(sunday => <Card fetchDay = {this.fetchDay} title = {sunday.title} sets = {sunday.sets} day =  {sunday.day} reps = {sunday.reps} id={sunday._id} key ={sunday._id}/>)}
@@ -250,7 +256,7 @@ render(){
                     <h2>Saturday</h2>
                     {saturday.map(saturday => <Card fetchDay = {this.fetchDay} title = {saturday.title} sets = {saturday.sets} day =  {saturday.day} reps = {saturday.reps} id={saturday._id} key ={saturday._id}/>)}
                 </div>
-            </div>
+           {/* </div>*/}
 
         </div>
     )

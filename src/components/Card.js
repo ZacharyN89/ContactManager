@@ -115,8 +115,8 @@ class Card extends Component {
                     <label>Reps: {this.props.reps}</label><br/>
                     
                     <form>
-                        <Button type = "button" className ="button" id={"editCard"+this.state.id} onClick ={this.editMode}>Edit</Button>
-                        <Button type = "button" className ="button" id={"deleteCard"+this.state.id} onClick = {this.deleteMode}>Delete</Button>                        
+                        <Button type = "button" className ="button"style={{height: '30px', width : '100px',fontSize:'small'}} id={"editCard"+this.state.id} onClick ={this.editMode}>Edit</Button>
+                        <Button type = "button" className ="button" style={{height: '30px', width : '100px',fontSize:'small'}}id={"deleteCard"+this.state.id} onClick = {this.deleteMode}>Delete</Button>                        
                     </form>
 
                 </div>
@@ -144,8 +144,8 @@ class Card extends Component {
 
 
 
-                            <Button type = "button" className ="button" id="editCard" onClick ={this.editExercise} >Save</Button>
-                            <Button type = "button" className ="button" id="editCard" onClick ={this.editMode}>Go Back</Button>
+                            <Button type = "button" className ="button" style={{height: '30px', width : '100px',fontSize:'small'}}id="editCard" onClick ={this.editExercise} >Save</Button>
+                            <Button type = "button" className ="button" style={{height: '30px', width : '100px',fontSize:'small'}}id="editCard" onClick ={this.editMode}>Back</Button>
                     </form>
                 
 
@@ -164,8 +164,8 @@ class Card extends Component {
                         <label>Reps: {this.props.reps}</label>
                     </div>
                     <p>Are you sure you want to delete this exercise?</p>
-                    <Button type = "button" className ="button" id={"deleteCard"+this.state.id} onClick ={this.deleteMode}>Go Back</Button>
-                    <Button type = "button" className ="button" id="deleteCard" onClick ={this.deleteExercise}>Delete</Button>
+                    <Button type = "button" className ="button"style={{height: '30px', width : '100px',fontSize:'small'}} id={"deleteCard"+this.state.id} onClick ={this.deleteMode}>Back</Button>
+                    <Button type = "button" className ="button" style={{height: '30px', width : '100px',fontSize:'small'}}id="deleteCard" onClick ={this.deleteExercise}>Delete</Button>
                 </div>
 
             </div>
