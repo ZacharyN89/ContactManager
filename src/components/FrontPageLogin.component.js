@@ -16,18 +16,25 @@ async function createUser(e){
 
 
     //email filtering
-    /*if(!email.match("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;"))
+    if(!validateEmail(email))
     {
         err.innerHTML = "Please enter a valid email address.";
         return;
-    }*/
+    }
     
     let password = (document.getElementById("passwordR").value);
+    let passwordR = (document.getElementById("passwordRetype").value);
     //password filtering
      if(password.length <5)
     {
         err.innerHTML = "Please enter a longer password.";
         return;
+    }
+    if(passwordR != password)
+    {
+        err.innerHTML = "Please retype your password correctly.";
+        return;
+
     }
 
     let user = {
@@ -55,34 +62,37 @@ async function createUser(e){
 
 }
 
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
 function  loginToggle(e){
     let login = document.getElementById("LoginUser");
-    let FrontPage = document.getElementById("FrontPage");
+    let buttons = document.getElementById("disappearAfter")
+    login.removeAttribute("hidden"); 
+    buttons.setAttribute("hidden", true);
 
-    //If the change user type screen was hidden before, unhide it
-    if(FrontPage.getAttribute("hidden") !== null){
-        FrontPage.removeAttribute("hidden"); 
-        login.setAttribute("hidden", true);
-    }
-    //otherwise, hide everything and show the general page
-    else{
-        login.removeAttribute("hidden"); 
-        FrontPage.setAttribute("hidden", true);
-    }
 }
 function  registerToggle(e){
     let register = document.getElementById("CreateUser");
-    let FrontPage = document.getElementById("FrontPage");
+    let buttons = document.getElementById("disappearAfter")
+    register.removeAttribute("hidden"); 
+    buttons.setAttribute("hidden", true);
+}
+function  registerloginToggle(e){
+    let register = document.getElementById("CreateUser");
+    let login = document.getElementById("LoginUser");
 
     //If the change user type screen was hidden before, unhide it
-    if(FrontPage.getAttribute("hidden") !== null){
-        FrontPage.removeAttribute("hidden"); 
+    if(login.getAttribute("hidden") !== null){
+        login.removeAttribute("hidden"); 
         register.setAttribute("hidden", true);
     }
     //otherwise, hide everything and show the general page
     else{
         register.removeAttribute("hidden"); 
-        FrontPage.setAttribute("hidden", true);
+        login.setAttribute("hidden", true);
     }
 }
 
@@ -146,7 +156,7 @@ Login = async(e)=>{
     localStorage.setItem("user",(userdata[0].email))
     localStorage.setItem("fName",(userdata[0].fName))
     localStorage.setItem("lName",(userdata[0].lName))
-    window.location.reload(false);
+    window.location.reload(false); 
 
 
 
@@ -164,9 +174,12 @@ render(){
                 </div>
                 <h2 className='welcomeTitle'><strong>The MountainTop Workout Planner</strong></h2>
             </div>
-            <br/>
+            <div id="disappearAfter">
             <Button type = "button" className ="button" id="addUser"onClick={loginToggle}><strong>Log in</strong></Button>
             <Button type = "button" className ="button" id="addUser"onClick={registerToggle}><strong>Register</strong></Button>
+            </div>
+            <br/>
+
             <div id = "CreateUser" className = "Register" onSubmit={createUser} hidden>
                 <h2><strong>Register</strong></h2>
                 <form>
@@ -187,11 +200,17 @@ render(){
                     <div>
                         <Form.Control id = "passwordR" required className = "input" placeholder ="Enter your password"></Form.Control>
                     </div>
+                    <label>Retype Password</label>
+                    <div>
+                        <Form.Control id = "passwordRetype" required className = "input" placeholder ="Retype your password"></Form.Control>
+                    </div>
+                    <p id = "errorReg"></p>
                     <Button type = "Submit" className ="button" id="addUser">Create Account</Button>
+                    <p onClick ={registerloginToggle}style ={{cursor:"pointer"}}>Already have an account? Login here</p>
 
 
                 </form>
-                <p id = "errorReg"></p>
+                
 
 
             </div>
@@ -210,6 +229,7 @@ render(){
                     </div>
                     <label id = "errorLogin"></label><br/>
                     <Button type = "Submit" className = "button" id="login"><strong>Log in</strong></Button>
+                    <p onClick ={registerloginToggle} style ={{cursor:"pointer"}}>Don't have an account yet? Register here.</p>
 
                 </form>
                 

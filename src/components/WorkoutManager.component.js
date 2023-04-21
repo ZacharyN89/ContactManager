@@ -12,7 +12,24 @@ function logout(){
     window.location.reload(false);
 }
 
-async function createExercise(e){
+
+
+
+class WorkoutManager extends Component{
+
+constructor(props){
+    super(props)
+    this.state ={
+        sunday: [],
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+    }
+}
+ createExercise = async(e)=>{
     e.preventDefault();
     let err = document.getElementById("errorAddEx")
     let userIn = localStorage.getItem("user");
@@ -55,20 +72,16 @@ async function createExercise(e){
 
 }
 
+toggleAddExercise = (e)=>{
+    let addExScreen = document.getElementById("AddExercise");
 
-
-class WorkoutManager extends Component{
-
-constructor(props){
-    super(props)
-    this.state ={
-        sunday: [],
-        monday: [],
-        tuesday: [],
-        wednesday: [],
-        thursday: [],
-        friday: [],
-        saturday: [],
+    //If the change user type screen was hidden before, unhide it
+    if(addExScreen.getAttribute("hidden") !== null){
+        addExScreen.removeAttribute("hidden");
+    }
+    //otherwise, hide everything and show the general page
+    else{
+         addExScreen.setAttribute("hidden", true);
     }
 }
 
@@ -108,9 +121,9 @@ createExercise = async(e)=>{
     err.innerHTML = "";
 
     await addExercise(exercise);
-    console.log("IT ACTUALLY WORKS")
     await this.fetchDay();
-    console.log("IT ACTUALLY WORKS HERE")
+    this.toggleAddExercise();
+
     return;
 
 
@@ -187,11 +200,12 @@ render(){
                 </div>
                 <center><div className='box2'>
            <box2><h2>This is MountainTop Workout Planner</h2></box2></div></center>
-            <h3>Welcome {localStorage.getItem("fName")} {localStorage.getItem("lName")}</h3>
-            <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button>
-            <div id = "Add Exercise" className='Register2'>
-                <h3>Add an Exercise</h3>
-                <form onSubmit ={createExercise}>
+            <h3>Welcome {localStorage.getItem("fName").charAt(0).toUpperCase()+localStorage.getItem("fName").slice(1)} {localStorage.getItem("lName").charAt(0).toUpperCase()+localStorage.getItem("lName").slice(1)}.</h3>
+            <Button type = "button" className ="button" id="logout"onClick={this.toggleAddExercise}>Add an Exercise</Button>
+            <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button><br/>
+            <div id = "AddExercise" className='Register2' hidden>
+                <h3>Add</h3>
+                <form onSubmit ={this.createExercise}>
                     <h3>Title</h3>
                     <div>
                        <Form.Control id = "ExTitle" required  className = "input" placeholder ="Enter your exercise name."></Form.Control> 
@@ -222,7 +236,7 @@ render(){
 
                 </form>
                 <p id = "errorAddEx"></p>
-
+                <Button type = "button" className ="button" id="logout"onClick={this.toggleAddExercise}>Cancel</Button>
 
             </div>
 
