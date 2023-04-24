@@ -1,0 +1,13 @@
+stages:
+  - build
+
+Build-Deploy-Frontend-to-Heroku:
+  stage: build
+  image: docker:latest
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - echo "Deploying Backend..."
+    - cd ./backend
+    - nodemon server
+    - echo "Frontend Deployment Complete!"
