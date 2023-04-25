@@ -26,72 +26,11 @@ constructor(props){
         tuesday: [],
         wednesday: [],
         thursday: [],
-        friday: [],
+        friday: [], 
         saturday: [],
     }
 }
  createExercise = async(e)=>{
-    e.preventDefault();
-    let err = document.getElementById("errorAddEx")
-    let userIn = localStorage.getItem("user");
-    let title = (document.getElementById("ExTitle").value);
-    let sets = Number(document.getElementById("sets").value)
-    let reps = Number(document.getElementById("reps").value)
-    let day = (document.getElementById("day").value)
-
-
-    //email filtering
-    /*if(!email.match("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;"))
-    {
-        err.innerHTML = "Please enter a valid email address.";
-        return;
-    }*/
-
-
-    //password filtering
-     if(sets === 0 || reps === 0)
-    {
-        err.innerHTML = "Please enter a valid exercise routine.";
-        return;
-    }
-
-    let exercise = {
-        email: userIn,
-        title: title,
-        sets:  sets,
-        reps:  reps,
-        day:   day
-    }
-    console.log(exercise)
-    err.innerHTML = "";
-
-    await addExercise(exercise);
-
-    return;
-
-
-
-}
-
-toggleAddExercise = (e)=>{
-    let addExScreenD = document.getElementById("AddExercise");
-
-    let addExScreenA = addExScreenD
-    let modalC = document.getElementById("modalCover");
-
-    //If the change user type screen was hidden before, unhide it
-    if(addExScreenA.getAttribute("hidden") !== null){
-        addExScreenA.removeAttribute("hidden");
-        modalC.removeAttribute("hidden");
-    }
-    //otherwise, hide everything and show the general page
-    else{
-        addExScreenA.setAttribute("hidden", true);
-        modalC.setAttribute("hidden", true);
-    }
-}
-
-createExercise = async(e)=>{
     e.preventDefault();
     let err = document.getElementById("errorAddEx")
     let userIn = localStorage.getItem("user");
@@ -136,7 +75,27 @@ createExercise = async(e)=>{
 
 }
 
+toggleAddExercise = (e)=>{
+    let addExScreenD = document.getElementById("AddExercise");
+
+    let addExScreenA = addExScreenD
+    let modalC = document.getElementById("modalCover");
+
+    //If the change user type screen was hidden before, unhide it
+    if(addExScreenA.getAttribute("hidden") !== null){
+        addExScreenA.removeAttribute("hidden");
+        modalC.removeAttribute("hidden");
+    }
+    //otherwise, hide everything and show the general page
+    else{
+        addExScreenA.setAttribute("hidden", true);
+        modalC.setAttribute("hidden", true);
+    }
+}
+
+
 fetchDay = async(e)=>{
+    console.log("CALL FETCH DAY")
     let userIn = localStorage.getItem("user");
 
     let exercise1 = {
@@ -186,10 +145,21 @@ fetchDay = async(e)=>{
         saturday : dataSat,
 
     })
-
-
-
 }
+onChangeValue(event){
+    console.log(event.target.value)
+    let change =event.target.value;
+    if (change ==="red")
+        document.getElementById("logo2").src=require('../images/icon2.png') ;
+    if (change ==="purple")
+        document.getElementById("logo2").src=require('../images/icon3.png') ;
+    if (change ==="aqua")
+        document.getElementById("logo2").src=require('../images/icon.png') ;
+    if (change ==="black")
+        document.getElementById("logo2").src=require('../images/icon4.png') ;
+}
+
+
 async componentDidMount() {
     this.fetchDay();
 }
@@ -197,18 +167,39 @@ async componentDidMount() {
 render(){
     const {sunday, monday, tuesday, wednesday, thursday, friday, saturday} = this.state;
 
-    return(
-        <div className="backgroundImg">
-           <div className='box'>
-                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2'/>
+    return(<div>
+
+            <div className="backgroundImg" id="displayScreen">
+                <div className='box'>
+                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2' id= "logo2"/>
                     <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
-            </div>
+                </div>
                 <center><div className='box2'>
-            <h2>This is MountainTop Workout Planner</h2></div></center>
-            <h3>Welcome {localStorage.getItem("fName").charAt(0).toUpperCase()+localStorage.getItem("fName").slice(1)} {localStorage.getItem("lName").charAt(0).toUpperCase()+localStorage.getItem("lName").slice(1)}.</h3>
-            <Button type = "button" className ="button1" id="logout"onClick={this.toggleAddExercise}>Add an Exercise</Button>
-            <Button type = "button" className ="button2" id="logout"onClick={logout}>Logout</Button><br/>
-            <div id="modalCover" className="modalCover" hidden />
+                    <h2>This is MountainTop Workout Planner</h2></div></center>
+                    <h3>Welcome {localStorage.getItem("fName").charAt(0).toUpperCase()+localStorage.getItem("fName").slice(1)} {localStorage.getItem("lName").charAt(0).toUpperCase()+localStorage.getItem("lName").slice(1)}.</h3>
+                    <form className="color-picker">
+                        <fieldset onChange={this.onChangeValue}>
+                            <legend className='bye'> Pick a color scheme</legend>
+                            <label for = "theme" className='bye'>Pink Theme</label> 
+                            <input type="radio" value="purple" name="theme" id = "purple"/> 
+
+                            <label for = "theme"className='bye'>Legacy Theme</label>
+                            <input type="radio" value="aqua" name="theme" id = "aqua" /> 
+
+                            <label for = "theme"className='bye'>Red Theme</label>
+                            <input type="radio" value="red" name="theme" id = "red" /> 
+
+                            <label for = "theme"className='bye'>Dark Theme</label>
+                            <input type="radio" value="black" name="theme" id = "black" /> 
+
+                        </fieldset>
+
+                    </form>
+                    <Button type = "button" className ="button1" id="logout"onClick={this.toggleAddExercise}>Add an Exercise</Button>
+                    <Button type = "button" className ="button2" id="logout"onClick={logout}>Logout</Button><br/>
+                    <div id="modalCover" className="modalCover" hidden />
+
+
             <div id = "AddExercise" className='Register2 center' hidden>
                 <h3>Add</h3>
                 <form onSubmit ={this.createExercise}>
@@ -242,11 +233,9 @@ render(){
 
                 </form>
                 <p id = "errorAddEx"></p>
-                <Button type = "button" className ="button" id="logout"onClick={this.toggleAddExercise}>Cancel</Button>
+                <Button type = "button" className ="buttonC" id="logout"onClick={this.toggleAddExercise}></Button>
 
-            </div>
-
-            
+                </div>
             <div className  = "displayDays-container">
                 <div id ="Sunday" className  = "displayDays">
                     <h2><center>Sunday</center></h2>
@@ -279,6 +268,9 @@ render(){
             </div>
 
         </div>
+
+        </div>
+        
     )
 }
 
