@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+
 import Card from './Card';
 import { addExercise , findExerciseDay} from '../features/WorkoutManager';
 
@@ -73,15 +74,20 @@ constructor(props){
 }
 
 toggleAddExercise = (e)=>{
-    let addExScreen = document.getElementById("AddExercise");
+    let addExScreenD = document.getElementById("AddExercise");
+
+    let addExScreenA = addExScreenD
+    let modalC = document.getElementById("modalCover");
 
     //If the change user type screen was hidden before, unhide it
-    if(addExScreen.getAttribute("hidden") !== null){
-        addExScreen.removeAttribute("hidden");
+    if(addExScreenA.getAttribute("hidden") !== null){
+        addExScreenA.removeAttribute("hidden");
+        modalC.removeAttribute("hidden");
     }
     //otherwise, hide everything and show the general page
     else{
-         addExScreen.setAttribute("hidden", true);
+        addExScreenA.setAttribute("hidden", true);
+        modalC.setAttribute("hidden", true);
     }
 }
 
@@ -192,18 +198,18 @@ render(){
     const {sunday, monday, tuesday, wednesday, thursday, friday, saturday} = this.state;
 
     return(
-       
-        <div style = {{backgroundImage:`url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)`, backgroundSize: "cover", padding:"82px", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+        <div className="backgroundImg">
            <div className='box'>
                     <img src={require('../images/icon3.png')} alt="logo2"  className='logo2'/>
                     <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
-                </div>
+            </div>
                 <center><div className='box2'>
-           <box2><h2>This is MountainTop Workout Planner</h2></box2></div></center>
+            <h2>This is MountainTop Workout Planner</h2></div></center>
             <h3>Welcome {localStorage.getItem("fName").charAt(0).toUpperCase()+localStorage.getItem("fName").slice(1)} {localStorage.getItem("lName").charAt(0).toUpperCase()+localStorage.getItem("lName").slice(1)}.</h3>
-            <Button type = "button" className ="button" id="logout"onClick={this.toggleAddExercise}>Add an Exercise</Button>
-            <Button type = "button" className ="button" id="logout"onClick={logout}>Logout</Button><br/>
-            <div id = "AddExercise" className='Register2' hidden>
+            <Button type = "button" className ="button1" id="logout"onClick={this.toggleAddExercise}>Add an Exercise</Button>
+            <Button type = "button" className ="button2" id="logout"onClick={logout}>Logout</Button><br/>
+            <div id="modalCover" className="modalCover" hidden />
+            <div id = "AddExercise" className='Register2 center' hidden>
                 <h3>Add</h3>
                 <form onSubmit ={this.createExercise}>
                     <h3>Title</h3>
@@ -221,7 +227,7 @@ render(){
                     
                     <h3>Day</h3>
                     <div className  = "custom-select">
-                        <select class="form-select" aria-label="Days" id="day">
+                        <select className="form-select" aria-label="Days" id="day">
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
@@ -241,9 +247,9 @@ render(){
             </div>
 
             
-            <div className  = "displayDays-container"></div>
+            <div className  = "displayDays-container">
                 <div id ="Sunday" className  = "displayDays">
-                    <h2>Sunday</h2>
+                    <h2><center>Sunday</center></h2>
                     {sunday.map(sunday => <Card fetchDay = {this.fetchDay} title = {sunday.title} sets = {sunday.sets} day =  {sunday.day} reps = {sunday.reps} id={sunday._id} key ={sunday._id}/>)}
                 </div>
                 <div id ="Monday" className  = "displayDays">
@@ -270,7 +276,7 @@ render(){
                     <h2>Saturday</h2>
                     {saturday.map(saturday => <Card fetchDay = {this.fetchDay} title = {saturday.title} sets = {saturday.sets} day =  {saturday.day} reps = {saturday.reps} id={saturday._id} key ={saturday._id}/>)}
                 </div>
-           {/* </div>*/}
+            </div>
 
         </div>
     )

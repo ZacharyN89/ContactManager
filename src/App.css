@@ -1,9 +1,6 @@
-
-
 .App{
   text-align: center;
 }
-
 
 .button {
   margin-left: 1%;
@@ -22,16 +19,26 @@
 .displayDays-container{
   display:inline-table;
   justify-content:space-around;
-  
-  
 }
+
 .displayDays{
+  position: relative;
   display: inline-table;
-  
 }
+
+.backgroundImg {
+  background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 141.5px;
+}
+
 .icon {
   background-image: url(./images/icon.png);
 }
+
 .input {
   padding:10px;
   text-align: center;
@@ -114,16 +121,13 @@ p {
     transparent,
     #270F36 );
   width:35%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   border: 1px solid #3a2b2b;
   border-style: outset;
   border-radius: 15px;
   margin-bottom: 20px;
   min-width: 300px;
-  position: fixed;
-  top: 10%;
-  left: 32%;
+  position: relative;
   animation: cardIn 0.5s;
   z-index: 5;
   overflow:hidden;
@@ -138,9 +142,20 @@ p {
   top:0%;
   left:0;
   z-index: unset;
-
-
 }
+
+.modalCover {
+  top: 0;
+  left: 0;
+  position: fixed;
+  content: "";
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: black;
+  z-index: 3;
+}
+
 .cardContainerDisplay{
   background: radial-gradient(
     transparent ,
@@ -153,7 +168,6 @@ p {
   padding-right: 50px;
   padding-bottom: 20px;
   position: relative; 
-  margin-left:20px;
   margin-bottom:20px;
   animation: cardIn 0.5s;
 
@@ -170,12 +184,11 @@ p {
   padding-right: 50px;
   padding-bottom: 20px;
   position: relative; 
-  margin-left:20px;
   margin-bottom:20px;
- 
+
 }
 
-.button,.button1{
+.button, .button1, .button2{
   background: linear-gradient(45deg,
   #270F36,
   #642B6B );
@@ -212,7 +225,8 @@ p {
   border-style: outset;
   border-radius: 15px;
   min-width: 250px;
-
+  position: relative;
+  z-index: 1;
 }
 .box{
   text-align: center;
@@ -223,7 +237,7 @@ p {
   
 }
 .logo1{
-
+  position: relative;
   z-index:2;
   transition:.4s;
   transform-origin: 50%,50%;
@@ -233,7 +247,7 @@ p {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  z-index:5;
+  z-index:3;
   opacity:1;
   transition: .5s;
   animation: taadaa 2s; 
@@ -335,4 +349,108 @@ select{
 ::-webkit-scrollbar-thumb:hover {
   background:#270F36;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .Register2 {
+    right: 15%;
+  }
+
+  .displayDays {
+    right: 2%;
+  }
+
+  .box {
+    position: relative;
+    right: 10%;
+  }
+  
+  .box2 {
+    position: relative;
+    right: 6%;
+  }
+
+  .button1 {
+    position: relative;
+    left: 2%;
+  }
+
+  .button2 {
+    position: relative;
+    left: 2%
+  }
+
+  .inputC {
+    position: relative;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 437px) {
+  .Register2 {
+    right: 50%;
+  }
+
+  .displayDays {
+    right: 20%;
+  }
+
+  .box {
+    position: relative;
+    right: 40%;
+  }
+  
+  .box2 {
+    position: relative;
+    right: 35%;
+  }
+
+  .button1 {
+    position: relative;
+    right: 5%;
+  }
+
+  .button2 {
+    position: relative;
+    right: 5%
+  }
+
+  .inputC {
+    position: relative;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .Register2 {
+    right: 115%;
+  }
+
+  .displayDays {
+    right: 30%;
+  }
+
+  .box {
+    position: relative;
+    right: 95%;
+  }
+  .box2 {
+    position: relative;
+    right: 85%;
+  }
+
+  .button1 {
+    position: relative;
+    right: 30%;
+  }
+
+  .button2 {
+    position: relative;
+    right: 20%
+  }
+
+  .inputC {
+    position: relative;
+    right: 5%;
+  }
 }
