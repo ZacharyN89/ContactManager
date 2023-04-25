@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import Form from "react-bootstrap/Form"
-
 import Button from "react-bootstrap/Button"
-import { addUser, findAllUsers, findSpecUsers } from '../features/FrontPage';
-
+import {addUser,  findSpecUsers} from '../features/FrontPage';
 
 async function createUser(e){
     e.preventDefault();
@@ -30,7 +28,7 @@ async function createUser(e){
         err.innerHTML = "Please enter a longer password.";
         return;
     }
-    if(passwordR != password)
+    if(passwordR !== password)
     {
         err.innerHTML = "Please retype your password correctly.";
         return;
@@ -96,10 +94,7 @@ function  registerloginToggle(e){
     }
 }
 
-function toggleLogintest(){
-    console.log(document.getElementById("Login").className)
-}
-
+/*
 
 function getUserData(){
     console.log(localStorage.getItem("user"));
@@ -110,7 +105,7 @@ function logout(){
     localStorage.removeItem("fName");
     localStorage.removeItem("lName");
     console.log("logged out");
-}
+}*/
 
 class FrontPage extends Component{
     constructor(props){
@@ -165,7 +160,7 @@ Login = async(e)=>{
 
 render(){
     return(
-        <div style = {{textAlign: "center", backgroundImage:`url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)`, backgroundSize: "cover",  boxSizing: "border-box", height:"100vh",paddingBottom:"99%", backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundAttachment:"fixed"}}>
+        <div className = "backgroundImgF">
             <div className='FrontPage' id="FrontPage">
                 <h2 className='welcomeTitle'>Welcome to</h2>    
                 <div className='box'>
