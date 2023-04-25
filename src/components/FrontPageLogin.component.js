@@ -157,6 +157,60 @@ Login = async(e)=>{
 
 };
 
+componentDidMount(){
+    let theme = localStorage.getItem("theme");
+    let root  = document.documentElement;
+    if (theme === "red"){
+        document.getElementById("logo2").src=require('../images/icon2.png') ;
+        root.style.setProperty("--backgrnd-img","url(https\:\/\/wallpaper\.dog\/large\/10933529\.jpg)");
+
+        root.style.setProperty('--clr-btn-bg', "linear-gradient(45deg,red,rgb(112, 0, 0) )");
+        root.style.setProperty("--clr-btn-hvr","linear-gradient(45deg, #3a0505,red)");
+        root.style.setProperty("--scroll-br-thmb","red");
+        root.style.setProperty("--scroll-br-hl","#a31616");
+        root.style.setProperty("--input-clr","#a31616");
+        root.style.setProperty("--login-box-bg","radial-gradient(transparent,#3a0505  )");
+        root.style.setProperty("--brder-clr","#c21515");
+    }
+        
+    else if (theme === "aqua")
+    {
+        document.getElementById("logo2").src=require('../images/icon.png') ;
+        root.style.setProperty("--backgrnd-img",'url("https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg")');
+        
+        root.style.setProperty('--clr-btn-bg', "#82007D");
+        root.style.setProperty("--clr-btn-hvr","#380036");
+        root.style.setProperty("--scroll-br-thmb","#0CBABA");
+        root.style.setProperty("--scroll-br-hl","#0c7aba");
+        root.style.setProperty("--scroll-br-trk","#380036");
+        root.style.setProperty("--input-clr","#380036");
+        root.style.setProperty("--login-box-bg","linear-gradient(45deg,#380036,#0CBABA )");
+        root.style.setProperty("--brder-clr","#0CBABA");
+    }
+        
+    else if (theme === "black")
+    {
+        document.getElementById("logo2").src=require('../images/icon4.png') ;
+        root.style.setProperty("--backgrnd-img","url(https\:\/\/wallpapercrafter\.com\/desktop\/14420-starry-sky-stars-shine-night-trees-starry-night-4k\.jpg)");
+    
+        root.style.setProperty('--clr-btn-bg', "linear-gradient(45deg,#28122b ,black) ");
+        root.style.setProperty("--clr-btn-hvr","linear-gradient(45deg,black,#401C44)");
+        root.style.setProperty("--scroll-br-thmb","#401C44");
+        root.style.setProperty("--scroll-br-hl","#2a122c");
+        
+        root.style.setProperty("--scroll-br-trk","black");
+        root.style.setProperty("--input-clr","black");
+        root.style.setProperty("--login-box-bg","radial-gradient(transparent,#28122b 80%)");
+        root.style.setProperty("--brder-clr","#461f49");
+    }
+        
+    else
+    {
+        document.getElementById("logo2").src=require('../images/icon3.png') ;
+    }
+        
+}
+
 
 render(){
     return(
@@ -164,7 +218,7 @@ render(){
             <div className='FrontPage' id="FrontPage">
                 <h2 className='welcomeTitle'>Welcome to</h2>    
                 <div className='box'>
-                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2'/>
+                    <img src={require('../images/icon3.png')} alt="logo2"  className='logo2' id="logo2"/>
                     <img src={require('../images/icon.png')} alt="logo" className='logo1'/>
                 </div>
                 <h2 className='welcomeTitle'><strong>The MountainTop Workout Planner</strong></h2>

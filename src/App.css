@@ -6,6 +6,7 @@
   --clr-btn-bg: linear-gradient(45deg,
   #270F36,
   #642B6B );
+  --login-box-bg: radial-gradient(transparent,#270F36 );;
   --logout-btn: linear-gradient(45deg,
   #270F36,
   #642B6B );
@@ -83,7 +84,7 @@
 }
 .backgroundImgF{
   text-align: center; 
-  background-image:url("https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
+  background-image:var(--backgrnd-img);
   background-size: cover;
   box-sizing: border-box;
   min-width:100%;
@@ -176,9 +177,7 @@ p {
 
 .Register, .Login{
   text-align: center;
-  background: radial-gradient(
-  transparent,
-  #270F36 );
+  background: var(--login-box-bg);
   width:25%;
   margin-left: auto;
   margin-right: auto;
@@ -576,6 +575,7 @@ input[type="radio"]{
     transparent,
     #28122b );
   --input-clr:black;
+  --scroll-br-trk:black;
   --backgrnd-crd-selected:radial-gradient(
     transparent,#28112b,black)
     ;

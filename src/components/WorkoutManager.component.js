@@ -147,22 +147,64 @@ fetchDay = async(e)=>{
     })
 }
 onChangeValue(event){
-    console.log(event.target.value)
+    //console.log(event.target.value)
     let change =event.target.value;
     if (change ==="red")
+    {
         document.getElementById("logo2").src=require('../images/icon2.png') ;
+        localStorage.setItem("theme","red");
+        const el = getComputedStyle(document.documentElement).getPropertyValue('--backgrnd-img')
+        console.log(el)
+    }
+
+
     if (change ==="purple")
+    {
         document.getElementById("logo2").src=require('../images/icon3.png') ;
+        localStorage.setItem("theme","purple");
+        const el = getComputedStyle(document.documentElement).getPropertyValue('--backgrnd-img')
+        console.log(el)
+    }
+
     if (change ==="aqua")
+    {
         document.getElementById("logo2").src=require('../images/icon.png') ;
+        localStorage.setItem("theme","aqua");
+        const el = getComputedStyle(document.documentElement).getPropertyValue('--backgrnd-img')
+        console.log(el)
+    }
+
     if (change ==="black")
+    {
         document.getElementById("logo2").src=require('../images/icon4.png') ;
+        localStorage.setItem("theme","black");
+        const el = getComputedStyle(document.documentElement).getPropertyValue('--backgrnd-img')
+        console.log(el)
+    }
+
+        
+
 }
 
 
 async componentDidMount() {
     this.fetchDay();
-    document.getElementById("purple").checked = true;
+    let theme = localStorage.getItem("theme");
+    if(theme === null)
+    {
+        document.getElementById("purple").checked = true;
+        return;
+    }
+    document.getElementById(theme).checked = true;
+    if (theme === "red")
+        document.getElementById("logo2").src=require('../images/icon2.png') ;
+    else if (theme === "aqua")
+        document.getElementById("logo2").src=require('../images/icon.png') ;
+    else if (theme === "black")
+        document.getElementById("logo2").src=require('../images/icon4.png') ;
+    else
+        document.getElementById("logo2").src=require('../images/icon3.png') ;
+
 }
 
 render(){
