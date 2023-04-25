@@ -124,8 +124,7 @@ Login = async(e)=>{
     let email = (document.getElementById("emailL").value);
     let password = (document.getElementById("passwordL").value);
     let user = {
-        email: email,
-        password: password
+        email: email
     }
 
     //err.innerHTML = email;

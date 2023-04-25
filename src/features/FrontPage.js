@@ -3,7 +3,7 @@ import axios from "axios"
 export const addUser = async(user) => {
 let status = null;
 
-axios.post("http://localhost:5000/user/add", JSON.stringify(user),
+axios.post("https://api.codegojolt.xyz/user/add", JSON.stringify(user),
 {
     headers:{
         'Content-Type':'application/json'
@@ -27,7 +27,7 @@ axios.post("http://localhost:5000/user/add", JSON.stringify(user),
 
 export const findAllUsers = async() =>{
     let data = null;
-    await axios.post("http://localhost:5000/user/findAllUsers",
+    await axios.post("https://api.codegojolt.xyz/user/findAllUsers",
     {
         headers:{
             'Content-Type':'application/json'
@@ -49,7 +49,7 @@ export const findAllUsers = async() =>{
 
 export const findSpecUsers = async(user) =>{
     let data = null;
-    await axios.post("http://localhost:5000/user/findSpecUsers", JSON.stringify(user),
+    await axios.post("https://api.codegojolt.xyz/user/findSpecUsers", JSON.stringify(user),
     {
         headers:{
             'Content-Type':'application/json'

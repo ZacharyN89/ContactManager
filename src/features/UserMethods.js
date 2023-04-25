@@ -3,7 +3,7 @@ import axios from "axios";
 export const addUser = async(user) => {
     let status = null;
 
-    axios.post("http://localhost:5000/user/add", JSON.stringify(user),
+    axios.post("https://api.codegojolt.xyz/user/add", JSON.stringify(user),
     {
         headers: {
             'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export const addUser = async(user) => {
 export const findUser = async() => {
     let data = null;
 
-   await  axios.get("http://localhost:5000/user/")
+   await  axios.get("https://api.codegojolt.xyz/user/")
         .then(res=>{
         if (res.data) {
             data = res.data;

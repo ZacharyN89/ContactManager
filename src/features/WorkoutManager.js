@@ -4,7 +4,7 @@ import axios from "axios"
 export const addExercise = async(exercise) => {
     let status = null;
     
-    axios.post("http://localhost:5000/exercise/add", JSON.stringify(exercise),
+    axios.post("https://api.codegojolt.xyz/exercise/add", JSON.stringify(exercise),
     {
         headers:{
             'Content-Type':'application/json'
@@ -28,7 +28,7 @@ export const addExercise = async(exercise) => {
 
 export const findExerciseDay = async(exercise) =>{
     let data = null;
-    await axios.post("http://localhost:5000/exercise/findDay", JSON.stringify(exercise),
+    await axios.post("https://api.codegojolt.xyz/exercise/findDay", JSON.stringify(exercise),
     {
         headers:{
             'Content-Type':'application/json'
@@ -51,7 +51,7 @@ export const findExerciseDay = async(exercise) =>{
 export const editExercise = async(exercise) =>{
     let data = null;
     let id = exercise.id;
-    await axios.post("http://localhost:5000/exercise/update/"+id, JSON.stringify(exercise),
+    await axios.post("https://api.codegojolt.xyz/exercise/update/"+id, JSON.stringify(exercise),
     {
         headers:{
             'Content-Type':'application/json'
@@ -74,7 +74,7 @@ export const editExercise = async(exercise) =>{
 export const deleteExercise = async(exercise) =>{
     let data = null;
     let id = exercise.id;
-    await axios.delete("http://localhost:5000/exercise/delete/"+id, 
+    await axios.delete("https://api.codegojolt.xyz/exercise/delete/"+id, 
     {
         headers:{
             'Content-Type':'application/json'
