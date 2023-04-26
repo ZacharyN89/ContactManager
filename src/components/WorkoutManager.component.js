@@ -223,16 +223,16 @@ render(){
                     <form className="color-picker">
                         <fieldset onChange={this.onChangeValue}>
                             <legend className='bye'> Pick a color scheme</legend>
-                            <label for = "theme" className='bye'>Pink Theme</label> 
+                            <label htmlFor = "theme" className='bye'>Pink Theme</label> 
                             <input type="radio" value="purple" name="theme" id = "purple"/> 
 
-                            <label for = "theme"className='bye'>Legacy Theme</label>
+                            <label htmlFor = "theme"className='bye'>Legacy Theme</label>
                             <input type="radio" value="aqua" name="theme" id = "aqua" /> 
 
-                            <label for = "theme"className='bye'>Red Theme</label>
+                            <label htmlFor = "theme"className='bye'>Red Theme</label>
                             <input type="radio" value="red" name="theme" id = "red" /> 
 
-                            <label for = "theme"className='bye'>Dark Theme</label>
+                            <label htmlFor = "theme"className='bye'>Dark Theme</label>
                             <input type="radio" value="black" name="theme" id = "black" /> 
 
                         </fieldset>

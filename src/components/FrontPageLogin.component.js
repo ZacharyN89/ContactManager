@@ -246,11 +246,11 @@ render(){
                     
                     <label>Password</label>
                     <div>
-                        <Form.Control id = "passwordR" required className = "input" placeholder ="Enter your password"></Form.Control>
+                        <Form.Control type = "password" id = "passwordR" required className = "input" placeholder ="Enter your password"></Form.Control>
                     </div>
                     <label>Retype Password</label>
                     <div>
-                        <Form.Control id = "passwordRetype" required className = "input" placeholder ="Retype your password"></Form.Control>
+                        <Form.Control type = "password" id = "passwordRetype" required className = "input" placeholder ="Retype your password"></Form.Control>
                     </div>
                     <p id = "errorReg"></p>
                     <Button type = "Submit" className ="button" id="addUser">Create Account</Button>
@@ -273,7 +273,7 @@ render(){
                     
                     <label>Password</label>
                     <div>
-                        <Form.Control id = "passwordL" required className = "input" placeholder ="Enter your password"></Form.Control>
+                        <Form.Control type = "password" id = "passwordL" required className = "input" placeholder ="Enter your password"></Form.Control>
                     </div>
                     <label id = "errorLogin"></label><br/>
                     <Button type = "Submit" className = "button" id="login"><strong>Log in</strong></Button>
