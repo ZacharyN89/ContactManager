@@ -1,18 +1,22 @@
-import React from 'react';
+
+
 import './App.css';
-import LoginPage from './components/loginPage.component';
-import RegisterPage from './components/registerPage.component';
-import WorkoutPage from './components/workoutPage.component';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import FrontPage from './components/FrontPageLogin.component';
+import WorkoutManager from './components/WorkoutManager.component';
+
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
+  let token = localStorage.getItem("user");
+  if (!token)
+  {
+    return <FrontPage/>
+  }
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path = "/" element = {<LoginPage/>}></Route>
-          <Route path = "/register" element = {<RegisterPage/>}></Route>
-          <Route path = "/workout" element = {<WorkoutPage/>}></Route>
+          <Route path="/" element = {<WorkoutManager/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

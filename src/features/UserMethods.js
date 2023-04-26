@@ -14,7 +14,8 @@ import axios from "axios";
 export const registerUser = async(user) => {
     let status = null;
 
-    axios.post("http://localhost:5000/users/add", JSON.stringify(user), {
+    axios.post("https://api.codegojolt.xyz/user/add", JSON.stringify(user),
+    {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -32,23 +33,11 @@ export const registerUser = async(user) => {
     }
 };
 
-export const loginUser = async(user) => {
-    console.log(JSON.stringify(user));
-    
-    axios.post("http://localhost:5000/users/login", JSON.stringify(user), {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(res => {
-        console.log(res.data);
-        if(res.data.password === user.password) {
-            localStorage.setItem("user", JSON.stringify(res.data));
-            console.log("Locally saved and login is successful");
-            document.getElementById("nameoutput").innerHTML = "Logging in";
-            window.location.href = "http://localhost:3000/workout";
-            return;
-        } else {
-            document.getElementById("nameoutput").innerHTML = "Incorrect password";
+   await  axios.get("https://api.codegojolt.xyz/user/")
+        .then(res=>{
+        if (res.data) {
+            data = res.data;
+        }else{
             console.log("error");
         }
     })
