@@ -167,7 +167,6 @@ class Card extends Component {
                     <Button type = "button" className ="button"style={{height: '30px', width : '100px',fontSize:'small'}} id={"deleteCard"+this.state.id} onClick ={this.deleteMode}>Back</Button>
                     <Button type = "button" className ="button" style={{height: '30px', width : '100px',fontSize:'small'}}id="deleteCard" onClick ={this.deleteExercise}>Delete</Button>
                 </div>
-
             </div>
         )
     }

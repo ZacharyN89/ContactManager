@@ -1,27 +1,20 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model.js');
 
-router.route('/').get((req, res) =>
+router.route('/find').post(async(req, res) =>
 {
-	Exercise.find()
-		.then(exercises => res.json(exercises))
-		.catch(err => res.status(400).json('Error: +' + err));
-});
+ 	const findUser = Exercise.find()
+    .then(users => res.json(users)) // This outputs the json
+    .catch(error => res.status(400).json('Error: +' +error)) // Catches any errors that occur
+ });
 
-router.route('/:email').get((req, res) =>
+ router.route('/findDay').post(async(req, res) =>
 {
-	var res_email = req.body.email;
-	Exercise.find({ email: res_email })
-		.then(exercises => res.json(exercises))
-		.catch(err => res.status(400).json('Error: +' + err));
+ 	const findUser = Exercise.find({email: req.body.email, day: req.body.day})
+    .then(users => res.json(users)) // This outputs the json
+    .catch(error => res.status(400).json('Error: +' +error)) // Catches any errors that occur
  });
    
-router.route('/:id').get((req, res) => {
-    Exercise.findById(req.params.id)
-    .then(exercise => res.json(exercise))
-    .catch(err => res.status(400).json('Error: +' + err));
-});
-
 router.route('/add').post((req, res) =>
 {
 	const email = req.body.email;

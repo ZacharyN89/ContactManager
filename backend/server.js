@@ -1,13 +1,17 @@
+// Function libaries
 const express = require('express');
 const cors = require('cors');
+// Importing mongoose to connect to mongodb
 const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+// App will reference express functions
 const app = express();
-
+// Port is where our backend is
 const port = process.env.PORT || 5000;
 
+// Call these two functions
 app.use(cors());
 app.use(express.json());
 

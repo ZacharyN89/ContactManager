@@ -27,6 +27,13 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: +' + err));
 });
 
+router.route('/login').post((req, res) => {
+    // Not sure why this actually doesn't need to use findUser... But it works I guess? I'll ask questions later
+    const findUser = User.findOne({email: req.body.email})
+    .then(users => res.json(users)) // This outputs the json
+    .catch(error => res.status(400).json('Error: +' +error)) // Catches any errors that occur
+});
+
 router.route('/update/:email').post((req, res) => {
     var email = req.body.email;
     User.findOne({email: email})
